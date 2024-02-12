@@ -923,4 +923,295 @@ CREATE TABLE `role_privileges` (
 
 25.
 
+CREATE TABLE `roles` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `RoleName` varchar(32) NOT NULL,--rolenname
+  `Description` varchar(256) DEFAULT NULL, --description of the role
+  `CreatedAt` datetime DEFAULT NULL,
+  `UpdatedAt` datetime NOT NULL,
+  `DeletedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+
+few shots:
+
+1.
+    give the role for particular id
+    - SELECT RoleName FROM roles WHERE id = your_specific_id;
+
+2.
+    give the description of the role for particular id
+    - SELECT Description FROM roles WHERE id = your_specific_id;
+
+3.
+    which are the unique roles are available in table
+    - SELECT DISTINCT RoleName FROM roles;
+
+
+
+26.
+
+
+CREATE TABLE `shared_document_details` (
+  `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `DocumentId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `ResourceId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `PatientUserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `DocumentType` varchar(128) NOT NULL DEFAULT 'Unknown',
+  `OriginalLink` text NOT NULL,
+  `ShortLink` varchar(256) NOT NULL,
+  `Key` varchar(512) NOT NULL,
+  `SharedWithUserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `SharedForDurationMin` int NOT NULL DEFAULT '720',
+  `SharedDate` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,
+  `UpdatedAt` datetime NOT NULL,
+  `DeletedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+few shots:
+
+1.
+    give the document type for particular patient id
+    -   SELECT DocumentType FROM shared_document_details WHERE PatientUserId = 'your_patient_user_id';
+ 
+ 
+ 2.
+    give the date of document shared for particular id
+    - SELECT SharedDate FROM shared_document_details WHERE id = 'your_document_id';
+
+
+3.
+    give the links for documents to particular id
+     - SELECT OriginalLink, ShortLink FROM shared_document_details WHERE PatientUserId = 'your_patient_user_id';
+
+
+27.
+
+CREATE TABLE `user_device_details` (
+  `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `UserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `Token` varchar(1024) NOT NULL,
+  `DeviceName` varchar(512) NOT NULL, --user device name
+  `OSType` varchar(256) NOT NULL, --operating system type
+  `OSVersion` varchar(64) NOT NULL, --operating system version
+  `AppName` varchar(256) NOT NULL, --app name
+  `AppVersion` varchar(64) NOT NULL, --app version
+  `ChangeCount` int DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,
+  `UpdatedAt` datetime NOT NULL,
+  `DeletedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `UserId` (`UserId`),
+  CONSTRAINT `user_device_details_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+few shots:
+
+1.
+    give the device name for particular user
+    - SELECT DeviceName FROM user_device_details WHERE UserId = 'your_user_id';
+
+2.
+    Operating System Type and Version for a Particular User
+    - SELECT OSType, OSVersion FROM user_device_details WHERE UserId = 'your_user_id';
+
+3.
+    App Name and Version for a Particular User
+    - SELECT AppName, AppVersion FROM user_device_details WHERE UserId = 'your_user_id';
+
+4.
+    give the token for particular user
+    - SELECT Token FROM user_device_details WHERE UserId = 'your_user_id';
+
+
+28.
+
+CREATE TABLE `user_login_sessions` (
+  `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `UserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `IsActive` tinyint(1) NOT NULL DEFAULT '1', --is user session is active or not
+  `StartedAt` datetime DEFAULT NULL, --session started
+  `ValidTill` datetime DEFAULT NULL, --session end time
+  `CreatedAt` datetime DEFAULT NULL,
+  `UpdatedAt` datetime NOT NULL,
+  `DeletedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `UserId` (`UserId`),
+  CONSTRAINT `user_login_sessions_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+few shots:
+
+1.
+    Retrieve Active Sessions for a User
+    - SELECT * FROM user_login_sessions WHERE UserId = 'your_user_id' AND IsActive = 1;
+
+2.
+    Retrieve Expired Sessions for a User
+    - SELECT * FROM user_login_sessions WHERE UserId = 'your_user_id' AND IsActive = 0;
+
+3.
+    Retrieve All Sessions for a User
+    - SELECT * FROM user_login_sessions WHERE UserId = 'your_user_id';
+
+4.
+    Retrieve Sessions that Expired Before a Specific Date
+    - SELECT * FROM user_login_sessions WHERE ValidTill < 'your_date';
+
+
+29.
+
+CREATE TABLE `user_tasks` (
+  `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `UserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---foreign key from user table
+  `DisplayId` varchar(128) DEFAULT NULL,
+  `Task` varchar(128) DEFAULT NULL,  ---task which is assigned to the user
+  `Category` varchar(128) DEFAULT 'Custom', --category of the task
+  `Description` varchar(256) DEFAULT NULL,-- description of the task
+  `ActionType` varchar(64) DEFAULT NULL,
+  `ActionId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `ScheduledStartTime` datetime DEFAULT NULL, --task scheluded start time
+  `ScheduledEndTime` datetime DEFAULT NULL, --task scheduled end time
+  `Started` tinyint(1) NOT NULL DEFAULT '0',
+  `StartedAt` datetime DEFAULT NULL,
+  `Finished` tinyint(1) NOT NULL DEFAULT '0',
+  `FinishedAt` datetime DEFAULT NULL,
+  `Cancelled` tinyint(1) NOT NULL DEFAULT '0',
+  `CancelledAt` datetime DEFAULT NULL,
+  `CancellationReason` varchar(128) DEFAULT NULL,
+  `IsRecurrent` tinyint(1) NOT NULL DEFAULT '0',
+  `RecurrenceScheduleId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,
+  `UpdatedAt` datetime NOT NULL,
+  `DeletedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `UserId` (`UserId`),
+  CONSTRAINT `user_tasks_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+few shots:
+
+1.
+    Retrieve All Tasks for a User
+    - SELECT * FROM user_tasks WHERE UserId = 'your_user_id';
+
+2.
+    Retrieve Active Tasks for a User
+    - SELECT * FROM user_tasks WHERE UserId = 'your_user_id' AND Finished = 0 AND Cancelled = 0;
+
+3.
+    Retrieve Finished Tasks for a User
+    - SELECT * FROM user_tasks WHERE UserId = 'your_user_id' AND Finished = 1;
+
+4.
+    Retrieve Cancelled Tasks for a User
+    - SELECT * FROM user_tasks WHERE UserId = 'your_user_id' AND Cancelled = 1;
+
+5.
+    Retrieve Recurrent Tasks for a User
+    - SELECT * FROM user_tasks WHERE UserId = 'your_user_id' AND IsRecurrent = 1;
+
+
+30.
+
+
+CREATE TABLE `users` (
+  `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `PersonId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---
+  `RoleId` int NOT NULL,
+  `UserName` varchar(10) DEFAULT NULL, --username
+  `Password` varchar(256) DEFAULT NULL, --password
+  `LastLogin` datetime DEFAULT NULL, --last login
+  `DefaultTimeZone` varchar(16) NOT NULL DEFAULT '+05:30', --default time zone
+  `CurrentTimeZone` varchar(16) NOT NULL DEFAULT '+05:30', --current time zone
+  `IsTestUser` tinyint(1) NOT NULL DEFAULT '0',
+  `CreatedAt` datetime DEFAULT NULL,
+  `UpdatedAt` datetime NOT NULL,
+  `DeletedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UserName` (`UserName`),
+  UNIQUE KEY `UserName_2` (`UserName`),
+  UNIQUE KEY `UserName_3` (`UserName`),
+  UNIQUE KEY `UserName_4` (`UserName`),
+  UNIQUE KEY `UserName_5` (`UserName`),
+  UNIQUE KEY `UserName_6` (`UserName`),
+  UNIQUE KEY `UserName_7` (`UserName`),
+  UNIQUE KEY `UserName_8` (`UserName`),
+  UNIQUE KEY `UserName_9` (`UserName`),
+  UNIQUE KEY `UserName_10` (`UserName`),
+  UNIQUE KEY `UserName_11` (`UserName`),
+  KEY `PersonId` (`PersonId`),
+  CONSTRAINT `users_ibfk_1` FOREIGN KEY (`PersonId`) REFERENCES `persons` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+few shots:
+
+1.
+    Retrieve User Details by UserName
+    - SELECT * FROM users WHERE UserName = 'your_username';
+
+2.
+    Retrieve User Details by PersonId
+    - SELECT * FROM users WHERE PersonId = 'your_person_id';
+
+3.
+    Retrieve Active Users
+    - SELECT * FROM users WHERE DeletedAt IS NULL;
+
+4.
+    Retrieve Test Users
+    - SELECT * FROM users WHERE IsTestUser = 1;
+
+5.
+    Retrieve Users by Role
+    - SELECT * FROM users WHERE RoleId = 'your_role_id';
+
+
+31.
+
+CREATE TABLE `addresses` (
+  `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `Type` varchar(16) NOT NULL DEFAULT 'Work',
+  `AddressLine` varchar(64) NOT NULL, --address
+  `City` varchar(32) DEFAULT NULL, --city
+  `Location` varchar(256) DEFAULT NULL, --location
+  `District` varchar(32) DEFAULT NULL, --district
+  `State` varchar(32) DEFAULT NULL, --state
+  `Country` varchar(128) DEFAULT NULL, --country
+  `PostalCode` varchar(16) DEFAULT NULL,--postal code
+  `Longitude` float DEFAULT NULL,
+  `Lattitude` float DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,
+  `UpdatedAt` datetime NOT NULL,
+  `DeletedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+few shots;
+
+1.
+    Retrieve Address Details by Address ID
+    - SELECT * FROM addresses WHERE id = 'your_address_id';
+
+2.
+    Retrieve Addresses by Type
+    - SELECT * FROM addresses WHERE Type = 'your_address_type';
+
+3.
+    Retrieve Addresses in a Specific City
+    - SELECT * FROM addresses WHERE City = 'your_city';
+
+4.
+    Retrieve Addresses in a Specific Country
+    - SELECT * FROM addresses WHERE Country = 'your_country';
+
+5.
+    Retrieve Active Addresses
+    - SELECT * FROM addresses WHERE DeletedAt IS NULL;
