@@ -1,3 +1,8 @@
+|Dog's Name| Dog's Age|
+|:---------:|---------|
+|tomya|2|
+|bantya|3|
+
 <!-- few shots or queries related to biometrics_body_temperature table -->
 
 1.
