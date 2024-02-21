@@ -1,8 +1,9 @@
 <!-- few shots or queries related to biometrics_body_temperature table -->
+|text|Query|
+|:---|:----|
 
-1.
-   <!-- give me the last month body temperature for this patient id -->
-    - SELECT * FROM biometrics_body_temperature WHERE PatientUserId = 'patient_uuid_here' AND RecordDate >= NOW() - INTERVAL 1 MONTH;
+   |give me the last month body temperature for this patient id|
+   | - SELECT * FROM biometrics_body_temperature WHERE PatientUserId = 'patient_uuid_here' AND RecordDate >= NOW() - INTERVAL 1 MONTH;|
 2.
     <!-- what is my body temperature yesterday -->
     - SELECT BodyTemperature FROM biometrics_body_temperature WHERE PatientUserId = 'patient_uuid_here' AND DATE(RecordDate) = CURDATE() - INTERVAL 1 DAY;
@@ -12,7 +13,6 @@
 4   
     <!-- give the total records from this table -->
     - SELECT COUNT(*) AS TotalRecords FROM biometrics_body_temperature;
-
 
 <!-- few shots or queries related to biometrics_body_height table-->
 
