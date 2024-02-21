@@ -2,6 +2,7 @@ Few shots for particular table:
 
 1..
 
+``` sql
 CREATE TABLE `biometrics_body_temperature` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `EhrId` varchar(128) DEFAULT NULL,
@@ -17,6 +18,7 @@ CREATE TABLE `biometrics_body_temperature` (
   `DeletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
 
 
