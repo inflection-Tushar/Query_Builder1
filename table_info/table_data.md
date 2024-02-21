@@ -1,6 +1,6 @@
 Few shots for particular table:
 
-1..
+1. biometrics_body_temperature
 
 ``` sql
 CREATE TABLE `biometrics_body_temperature` (
@@ -23,8 +23,8 @@ CREATE TABLE `biometrics_body_temperature` (
 
 
 
-2.
-
+2. biometrics_body_height
+``` sql
 CREATE TABLE `biometrics_body_height` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `EhrId` varchar(128) DEFAULT NULL,
@@ -43,11 +43,13 @@ CREATE TABLE `biometrics_body_height` (
   CONSTRAINT `biometrics_body_height_ibfk_21` FOREIGN KEY (`PersonId`) REFERENCES `persons` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `biometrics_body_height_ibfk_22` FOREIGN KEY (`PatientUserId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
 
 
 
-3.
+3. biometrics_blood_pressure
+``` sql
 CREATE TABLE `biometrics_blood_pressure` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `EhrId` varchar(128) DEFAULT NULL,
@@ -67,11 +69,11 @@ CREATE TABLE `biometrics_blood_pressure` (
   KEY `PersonId` (`PersonId`),
   CONSTRAINT `biometrics_blood_pressure_ibfk_1` FOREIGN KEY (`PersonId`) REFERENCES `persons` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
 
-
-4.
-
+4. biometrics_blood_oxygen_saturation
+``` sql
   CREATE TABLE `biometrics_blood_oxygen_saturation` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `EhrId` varchar(128) DEFAULT NULL,
@@ -87,12 +89,12 @@ CREATE TABLE `biometrics_blood_pressure` (
   `DeletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
 
 
-
-5.
-
+5. biometrics_blood_glucose
+``` sql
  CREATE TABLE `biometrics_blood_glucose` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `EhrId` varchar(128) DEFAULT NULL,
@@ -112,12 +114,12 @@ CREATE TABLE `biometrics_blood_pressure` (
   KEY `PersonId` (`PersonId`),
   CONSTRAINT `biometrics_blood_glucose_ibfk_1` FOREIGN KEY (`PersonId`) REFERENCES `persons` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
 
 
-
-6.
-
+6. biometrics_blood_cholesterol
+``` sql
 CREATE TABLE `biometrics_blood_cholesterol` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `EhrId` varchar(128) DEFAULT NULL,
@@ -139,12 +141,12 @@ CREATE TABLE `biometrics_blood_cholesterol` (
   KEY `PersonId` (`PersonId`),
   CONSTRAINT `biometrics_blood_cholesterol_ibfk_1` FOREIGN KEY (`PersonId`) REFERENCES `persons` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
 
 
-
-7.
-
+7. biometrics_body_weight
+``` sql
 CREATE TABLE `biometrics_body_weight` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `EhrId` varchar(128) DEFAULT NULL,
@@ -160,12 +162,12 @@ CREATE TABLE `biometrics_body_weight` (
   KEY `PatientUserId` (`PatientUserId`),
   CONSTRAINT `biometrics_body_weight_ibfk_1` FOREIGN KEY (`PatientUserId`) REFERENCES `users` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
 
 
-
-8.
-
+8. blood_donation_volunteers
+``` sql
   CREATE TABLE `blood_donation_volunteers` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `UserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, --foreign key from users table
@@ -189,14 +191,14 @@ CREATE TABLE `biometrics_body_weight` (
   CONSTRAINT `blood_donation_volunteers_ibfk_21` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `blood_donation_volunteers_ibfk_22` FOREIGN KEY (`PersonId`) REFERENCES `persons` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
 
 
 
 
-
-9.
-
+9. blood_donors
+``` sql
 CREATE TABLE `blood_donors` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `UserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---user id from users table
@@ -219,11 +221,11 @@ CREATE TABLE `blood_donors` (
   CONSTRAINT `blood_donors_ibfk_21` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `blood_donors_ibfk_22` FOREIGN KEY (`PersonId`) REFERENCES `persons` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
 
-
-10.
-
+10. custom_tasks
+``` sql
 CREATE TABLE `custom_tasks` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `UserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, --foreign key from users table
@@ -250,13 +252,12 @@ CREATE TABLE `custom_tasks` (
   KEY `UserId` (`UserId`),
   CONSTRAINT `custom_tasks_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
 
 
-
-11.
-
-
+11. doctors
+``` sql
 CREATE TABLE `doctors` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `UserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, --foreign key from users table
@@ -280,14 +281,14 @@ CREATE TABLE `doctors` (
   CONSTRAINT `doctors_ibfk_21` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `doctors_ibfk_22` FOREIGN KEY (`PersonId`) REFERENCES `persons` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
 
 
 
 
-
-12.
-
+12. health_priorities
+``` sql
 CREATE TABLE `health_priorities` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `PatientUserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, --foreign key from users table
@@ -307,13 +308,13 @@ CREATE TABLE `health_priorities` (
   `DeletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
 
 
-
-
-13.
-
+ 
+13. health_priority_types
+``` sql
 CREATE TABLE `health_priority_types` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `Type` varchar(256) NOT NULL,
@@ -323,12 +324,12 @@ CREATE TABLE `health_priority_types` (
   `DeletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
 
 
-
-14.
-
+14. otp
+``` sql
 CREATE TABLE `otp` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `UserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
@@ -342,15 +343,12 @@ CREATE TABLE `otp` (
   `DeletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
+```
 
 
     
-
-
-
-15.
-
+15. patient_documents
+``` sql
 CREATE TABLE `patient_documents` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `EhrId` varchar(128) DEFAULT NULL,
@@ -376,13 +374,13 @@ CREATE TABLE `patient_documents` (
   `DeletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
 
 
 
-
-16.
-
+16. patient_emergency_contacts
+``` sql
 CREATE TABLE `patient_emergency_contacts` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `PatientUserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, --foreign key from users table
@@ -407,13 +405,13 @@ CREATE TABLE `patient_emergency_contacts` (
   CONSTRAINT `patient_emergency_contacts_ibfk_43` FOREIGN KEY (`AddressId`) REFERENCES `addresses` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `patient_emergency_contacts_ibfk_44` FOREIGN KEY (`OrganizationId`) REFERENCES `organizations` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
 
 
 
-
-17.
-
+17. patient_goals
+``` sql
 CREATE TABLE `patient_goals` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `PatientUserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,--foreign key from user
@@ -435,11 +433,11 @@ CREATE TABLE `patient_goals` (
   `DeletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
 
-
-18. patient profile
-
+18. patient_health_profiles
+``` sql
 CREATE TABLE `patient_health_profiles` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `PatientUserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
@@ -481,14 +479,14 @@ CREATE TABLE `patient_health_profiles` (
   PRIMARY KEY (`id`),
   KEY `PatientUserId` (`PatientUserId`),
   CONSTRAINT `patient_health_profiles_ibfk_1` FOREIGN KEY (`PatientUserId`) REFERENCES `users` (`id`) ON UPDATE CASCADE
-
+```
 
  
 
 
 
-19. patient insurance details
-
+19. patient_insurances
+``` sql
 CREATE TABLE `patient_insurances` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `PatientUserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
@@ -501,12 +499,12 @@ CREATE TABLE `patient_insurances` (
   `DeletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
+```
 
 
 
 20. patients
-
+``` sql
 CREATE TABLE `patients` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `UserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
@@ -531,13 +529,12 @@ CREATE TABLE `patients` (
   CONSTRAINT `patients_ibfk_21` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `patients_ibfk_22` FOREIGN KEY (`PersonId`) REFERENCES `persons` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
 
 
-
-21. person address 
-
-
+21. person_addresses 
+``` sql
 CREATE TABLE `person_addresses` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `PersonId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, --foreign key from persons table
@@ -552,13 +549,13 @@ CREATE TABLE `person_addresses` (
   CONSTRAINT `person_addresses_ibfk_21` FOREIGN KEY (`PersonId`) REFERENCES `persons` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `person_addresses_ibfk_22` FOREIGN KEY (`AddressId`) REFERENCES `addresses` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
 
 
 
-
-22.
-
+22. person_roles
+``` sql
 CREATE TABLE `person_roles` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `PersonId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, --foreign key from persons table
@@ -569,11 +566,11 @@ CREATE TABLE `person_roles` (
   `DeletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
 
-
-23.
-
+23. persons
+``` sql
 CREATE TABLE `persons` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `Prefix` varchar(16) DEFAULT NULL,
@@ -607,13 +604,13 @@ CREATE TABLE `persons` (
   UNIQUE KEY `NationalId_11` (`NationalId`),
   KEY `persons__phone` (`Phone`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
 
 
 
-
-24.
-
+24. role_privileges
+``` sql
 CREATE TABLE `role_privileges` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `Privilege` varchar(256) NOT NULL,
@@ -623,11 +620,11 @@ CREATE TABLE `role_privileges` (
   `DeletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
 
-
-25.
-
+25. roles
+``` sql
 CREATE TABLE `roles` (
   `id` int NOT NULL AUTO_INCREMENT,
   `RoleName` varchar(32) NOT NULL,--rolenname
@@ -637,14 +634,13 @@ CREATE TABLE `roles` (
   `DeletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
 
 
 
-
-26.
-
-
+26. shared_document_details
+``` sql
 CREATE TABLE `shared_document_details` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `DocumentId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
@@ -662,12 +658,12 @@ CREATE TABLE `shared_document_details` (
   `DeletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
 
 
-
-27.
-
+27. user_device_details
+``` sql
 CREATE TABLE `user_device_details` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `UserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
@@ -685,12 +681,12 @@ CREATE TABLE `user_device_details` (
   KEY `UserId` (`UserId`),
   CONSTRAINT `user_device_details_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
 
 
-
-28.
-
+28. user_login_sessions
+``` sql
 CREATE TABLE `user_login_sessions` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `UserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
@@ -704,12 +700,12 @@ CREATE TABLE `user_login_sessions` (
   KEY `UserId` (`UserId`),
   CONSTRAINT `user_login_sessions_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
 
 
-
-29.
-
+29. user_tasks
+``` sql
 CREATE TABLE `user_tasks` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `UserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---foreign key from user table
@@ -737,13 +733,12 @@ CREATE TABLE `user_tasks` (
   KEY `UserId` (`UserId`),
   CONSTRAINT `user_tasks_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
 
 
-
-30.
-
-
+30. users
+``` sql
 CREATE TABLE `users` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `PersonId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---
@@ -772,12 +767,12 @@ CREATE TABLE `users` (
   KEY `PersonId` (`PersonId`),
   CONSTRAINT `users_ibfk_1` FOREIGN KEY (`PersonId`) REFERENCES `persons` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
 
 
 
-
-31.
-
+31. addresses
+``` sql
 CREATE TABLE `addresses` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `Type` varchar(16) NOT NULL DEFAULT 'Work',
@@ -795,4 +790,4 @@ CREATE TABLE `addresses` (
   `DeletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
+```
