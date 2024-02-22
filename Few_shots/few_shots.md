@@ -1,4 +1,5 @@
-```few shots or queries related to biometrics_body_temperature table ```
+Few_Shots or Queries related to health management system
+<!-- ```few shots or queries related to biometrics_body_temperature table ``` -->
 |sr|text|Query|
 |:-|:---|:----|
 |1.|give me the last month body temperature for this patient id|- SELECT * FROM biometrics_body_temperature WHERE PatientUserId = 'patient_uuid_here' AND RecordDate >= NOW() - INTERVAL 1 MONTH;|
