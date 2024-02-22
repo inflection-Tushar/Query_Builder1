@@ -50,7 +50,7 @@
 |49.|give the relation of relative to the particular patient id |- SELECT ContactRelation FROM patient_emergency_contacts WHERE PatientUserId = 'desired_user_id';|
 |50.|give the organization of relatives for particular patient id |- SELECT OrganizationId FROM patient_emergency_contacts WHERE PatientUserId = 'desired_user_id';|
 |51.| give the goal title of particular patient id |- SELECT Title FROM patient_goals WHERE PatientUserId = 'desired_user_id';|
-|52.give the provider who provide the goal to the particular patient |- SELECT DISTINCT Provider FROM patient_goals WHERE PatientUserId = 'desired_user_id';|
+|52.|give the provider who provide the goal to the particular patient |- SELECT DISTINCT Provider FROM patient_goals WHERE PatientUserId = 'desired_user_id';|
 |53.| give the complete time of goal for particular patient id |- SELECT CompletedAt FROM patient_goals WHERE PatientUserId = 'desired_user_id';|
 |54.|give the goal abondoned time for particular patient id |- SELECT CompletedAt FROM patient_goals WHERE PatientUserId = 'desired_user_id' AND GoalAbandoned = 1;|
 |55.| give the blood group for particular patient id |- SELECT BloodGroup FROM patient_health_profiles WHERE PatientUserId = 'your_patient_user_id';|
@@ -94,51 +94,13 @@
 |92.| Retrieve Finished Tasks for a User |- SELECT * FROM user_tasks WHERE UserId = 'your_user_id' AND Finished = 1;|
 |93.|Retrieve Cancelled Tasks for a User |- SELECT * FROM user_tasks WHERE UserId = 'your_user_id' AND Cancelled = 1;|
 |94.| Retrieve Recurrent Tasks for a User |- SELECT * FROM user_tasks WHERE UserId = 'your_user_id' AND IsRecurrent = 1;|
-
-
-
-<!-- few shots or queries related to users table -->
-
-1.
-    <!-- Retrieve User Details by UserName -->
-    - SELECT * FROM users WHERE UserName = 'your_username';
-
-2.
-    <!-- Retrieve User Details by PersonId -->
-    - SELECT * FROM users WHERE PersonId = 'your_person_id';
-
-3.
-    <!-- Retrieve Active Users -->
-    - SELECT * FROM users WHERE DeletedAt IS NULL;
-
-4.
-    <!-- Retrieve Test Users -->
-    - SELECT * FROM users WHERE IsTestUser = 1;
-
-5.
-    <!-- Retrieve Users by Role -->
-    - SELECT * FROM users WHERE RoleId = 'your_role_id';
-
-
-
-<!-- few shots or queries related to addresses table  -->
-
-1.
-    <!-- Retrieve Address Details by Address ID -->
-    - SELECT * FROM addresses WHERE id = 'your_address_id';
-
-2.
-    <!-- Retrieve Addresses by Type -->
-    - SELECT * FROM addresses WHERE Type = 'your_address_type';
-
-3.
-    <!-- Retrieve Addresses in a Specific City -->
-    - SELECT * FROM addresses WHERE City = 'your_city';
-
-4.
-    <!-- Retrieve Addresses in a Specific Country -->
-    - SELECT * FROM addresses WHERE Country = 'your_country';
-
-5.
-    <!-- Retrieve Active Addresses -->
-    - SELECT * FROM addresses WHERE DeletedAt IS NULL;
+|95.| Retrieve User Details by UserName |- SELECT * FROM users WHERE UserName = 'your_username';|
+|96.| Retrieve User Details by PersonId |- SELECT * FROM users WHERE PersonId = 'your_person_id';|
+|97.| Retrieve Active Users |- SELECT * FROM users WHERE DeletedAt IS NULL;|
+|98. Retrieve Test Users |- SELECT * FROM users WHERE IsTestUser = 1;|
+|99.| Retrieve Users by Role |- SELECT * FROM users WHERE RoleId = 'your_role_id';|
+|100.| Retrieve Address Details by Address ID |- SELECT * FROM addresses WHERE id = 'your_address_id';|
+|101.| Retrieve Addresses by Type |- SELECT * FROM addresses WHERE Type = 'your_address_type';|
+|102.| Retrieve Addresses in a Specific City |- SELECT * FROM addresses WHERE City = 'your_city';|
+|103.| Retrieve Addresses in a Specific Country |- SELECT * FROM addresses WHERE Country = 'your_country';|
+|104.|Retrieve Active Addresses | - SELECT * FROM addresses WHERE DeletedAt IS NULL;|
