@@ -65,7 +65,6 @@
 |64.| give the associated hospital for particular id |- SELECT AssociatedHospital FROM patients WHERE UserId = 'your_user_id';|
 |65.| give the display id for particular user | - SELECT DisplayId FROM patients WHERE UserId = 'your_user_id';|
 |66.| give the address type for particular person id | -    SELECT AddressType FROM person_addresses WHERE PersonId = 'your_person_id';|
-
 |67.| give the address id for particular person id |- SELECT AddressId FROM person_addresses WHERE PersonId = 'your_person_id';|
 |68.| give the role for particular person id |- SELECT RoleName FROM person_roles WHERE PersonId = 'your_person_id'; |
 |69.| give the gender of thid id |- SELECT Gender FROM persons WHERE id = 'your_person_id';|
@@ -97,7 +96,7 @@
 |95.| Retrieve User Details by UserName |- SELECT * FROM users WHERE UserName = 'your_username';|
 |96.| Retrieve User Details by PersonId |- SELECT * FROM users WHERE PersonId = 'your_person_id';|
 |97.| Retrieve Active Users |- SELECT * FROM users WHERE DeletedAt IS NULL;|
-|98. Retrieve Test Users |- SELECT * FROM users WHERE IsTestUser = 1;|
+|98.| Retrieve Test Users |- SELECT * FROM users WHERE IsTestUser = 1;|
 |99.| Retrieve Users by Role |- SELECT * FROM users WHERE RoleId = 'your_role_id';|
 |100.| Retrieve Address Details by Address ID |- SELECT * FROM addresses WHERE id = 'your_address_id';|
 |101.| Retrieve Addresses by Type |- SELECT * FROM addresses WHERE Type = 'your_address_type';|
