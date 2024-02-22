@@ -62,7 +62,7 @@
 |60.| give the insurance provider to the particular patient id |- SELECT InsuranceProvider FROM patient_insurances WHERE PatientUserId = 'your_patient_user_id';|
 |61.| give the insurance policy code for particular patient | - SELECT InsurancePolicyCode FROM patient_insurances WHERE PatientUserId = 'your_patient_user_id';|
 |62.|give the validity of insurance to the particular id |- SELECT ValidFrom, ValidTill FROM patient_insurances WHERE PatientUserId = 'your_patient_user_id';|
-|63.| give the national health id for particular user - SELECT NationalHealthId FROM patients WHERE UserId = 'your_user_id';|
+|63.| give the national health id for particular user |- SELECT NationalHealthId FROM patients WHERE UserId = 'your_user_id';|
 |64.| give the associated hospital for particular id |- SELECT AssociatedHospital FROM patients WHERE UserId = 'your_user_id';|
 |65.| give the display id for particular user | - SELECT DisplayId FROM patients WHERE UserId = 'your_user_id';|
 |66.| give the address type for particular person id | -    SELECT AddressType FROM person_addresses WHERE PersonId = 'your_person_id';|
