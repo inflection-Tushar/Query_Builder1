@@ -328,6 +328,7 @@ CREATE TABLE `health_priority_types` (
 
 
 
+
 14. otp
 ``` sql
 CREATE TABLE `otp` (
@@ -785,9 +786,31 @@ CREATE TABLE `addresses` (
   `PostalCode` varchar(16) DEFAULT NULL,--postal code
   `Longitude` float DEFAULT NULL,
   `Lattitude` float DEFAULT NULL,
-  `CreatedAt` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,  
   `UpdatedAt` datetime NOT NULL,
   `DeletedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```
+32. organizations
+``` sql
+CREATE TABLE `organizations` (
+  `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `Name` varchar(64) DEFAULT '',
+  `Type` enum('Clinic','Hospital','Diagnostic Lab','Diagnostic Lab - Pathology','Diagnostic Lab - Imaging','Pharmacy','Ambulance Service','Government Primary Health Care Centre','Government Nodal Hospital','Government District Hospital','Municipal Hospital','Blood Bank','Nursing Home','Specialized Care Centre','Ambulatory Procedure Centre','Social Health','Unknown') NOT NULL DEFAULT 'Unknown',
+  `ContactUserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `ContactPhone` varchar(16) NOT NULL,
+  `ContactEmail` varchar(50) DEFAULT NULL,
+  `About` varchar(512) DEFAULT NULL,
+  `ParentOrganizationId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `OperationalSince` datetime DEFAULT NULL,
+  `ImageResourceId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `IsHealthFacility` tinyint(1) NOT NULL DEFAULT '1',
+  `NationalHealthFacilityRegistryId` varchar(64) DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,
+  `UpdatedAt` datetime NOT NULL,
+  `DeletedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `organizations__contact_phone` (`ContactPhone`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```

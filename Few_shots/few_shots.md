@@ -1,4 +1,4 @@
-Few_Shots or Queries related to health management system
+-Few_Shots or Queries related to health management system
 <!-- ```few shots or queries related to biometrics_body_temperature table ``` -->
 |sr|text|Query|
 |:-|:---|:----|
@@ -31,7 +31,7 @@ Few_Shots or Queries related to health management system
 |28.|donors who are available for this blood group |- SELECT * FROM blood_donors WHERE BloodGroup = 'desired_blood_group' AND IsAvailable = 1;|
 |29.|give the donor for particular AcceptorUserId |- SELECT * FROM blood_donors WHERE AcceptorUserId = 'desired_acceptor_user_id';|
 |30.|task for the particular user | - SELECT * FROM custom_tasks WHERE UserId = 'desired_user_id';|
-|31.| task scheduled time for particular user id- SELECT Task, ScheduledStartTime, ScheduledEndTime FROM custom_tasks WHERE UserId = 'desired_user_id';|
+|31.| task scheduled time for particular user id |- SELECT Task, ScheduledStartTime, ScheduledEndTime FROM custom_tasks WHERE UserId = 'desired_user_id';|
 |32.|give the task and description for particular id |- SELECT Task, Description FROM custom_tasks WHERE UserId = 'desired_user_id';|
 |33.| give the speciality of doctor for this doctor id |- SELECT Specialities FROM doctors WHERE id = 'desired_doctor_id';|
 |34.|qualifications of doctor for this particular id |- SELECT Qualifications FROM doctors WHERE id = 'desired_doctor_id';|
