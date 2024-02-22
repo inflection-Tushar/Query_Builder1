@@ -8,52 +8,35 @@
 
 ```few shots or queries related to biometrics_body_height table```
 
-1. 
-    <!-- give me the total records of height for the particular id -->
-    - SELECT COUNT(*) AS TotalHeightRecords FROM biometrics_body_height WHERE PersonId = 'person_uuid_here';
 
-2.
-    <!-- what is the highest body temperature in last week for particular id -->
-    - SELECT MAX(BodyTemperature) AS HighestBodyTemperature FROM biometrics_body_temperature WHERE PatientUserId = 'patient_uuid_here' AND RecordDate >= CURDATE() - INTERVAL 1 WEEK;
+|5.|give me the total records of height for the particular id |- SELECT COUNT(*) AS TotalHeightRecords FROM biometrics_body_height WHERE PersonId = 'person_uuid_here';|
 
-3. 
-    <!-- give the history of height for last month for particular id -->
-    - SELECT * FROM biometrics_body_height WHERE PersonId = 'person_uuid_here' AND RecordDate >= CURDATE() - INTERVAL 1 MONTH;
+|6.|what is the highest body temperature in last week for particular id|- SELECT MAX(BodyTemperature) AS HighestBodyTemperature FROM biometrics_body_temperature WHERE PatientUserId = 'patient_uuid_here' AND RecordDate >= CURDATE() - INTERVAL 1 WEEK;|
+
+|7.|give the history of height for last month for particular id |- SELECT * FROM biometrics_body_height WHERE PersonId = 'person_uuid_here' AND RecordDate >= CURDATE() - INTERVAL 1 MONTH;|
 
 
 
-<!-- few shots or queries related to biometrics_blood_pressure table-->
+``` few shots or queries related to biometrics_blood_pressure table ```
 
-1. 
-    <!-- give me the blood pressure history for last month for the particular patient id  -->
-    - SELECT * FROM biometrics_blood_pressure WHERE PatientUserId = 'patient_uuid_here' AND RecordDate >= CURDATE() - INTERVAL 1 MONTH;
+|8.| give me the blood pressure history for last month for the particular patient id | - SELECT * FROM biometrics_blood_pressure WHERE PatientUserId = 'patient_uuid_here' AND RecordDate >= CURDATE() - INTERVAL 1 MONTH;|
 
-2.
-    <!-- notice the high blood pressure in last week for particular patient id -->
-    - SELECT * FROM biometrics_blood_pressure WHERE PatientUserId = 'patient_uuid_here' AND RecordDate >= CURDATE() - INTERVAL 1 WEEK AND (Systolic > your_high_threshold OR Diastolic > your_high_threshold);
+|9.|notice the high blood pressure in last week for particular patient id | - SELECT * FROM biometrics_blood_pressure WHERE PatientUserId = 'patient_uuid_here' AND RecordDate >= CURDATE() - INTERVAL 1 WEEK AND (Systolic > your_high_threshold OR Diastolic > your_high_threshold);|
 
-3. 
-    <!-- give the total patient who check the blood pressure -->
-    - SELECT COUNT(DISTINCT PatientUserId) AS TotalPatients FROM biometrics_blood_pressure;
+|10.| give the total patient who check the blood pressure |- SELECT COUNT(DISTINCT PatientUserId) AS TotalPatients FROM biometrics_blood_pressure;|
 
-4.
-    <!-- give the updated time for this patient id -->
-    - SELECT MAX(UpdatedAt) AS LatestUpdateTime FROM biometrics_blood_pressure WHERE PatientUserId = 'patient_uuid_here';
+|11.| give the updated time for this patient id |- SELECT MAX(UpdatedAt) AS LatestUpdateTime FROM biometrics_blood_pressure WHERE PatientUserId = 'patient_uuid_here';|
 
 
 
-<!-- few shots or queris related to biometrics_blood_oxygen_saturation table -->
+``` few shots or queris related to biometrics_blood_oxygen_saturation table ```
  
- 1.
-    <!-- give me the last month history of oxygen level in blood for particular id -->
-    -SELECT * FROM biometrics_blood_oxygen_saturation WHERE PatientUserId = 'patient_uuid_here' AND RecordDate >= CURDATE() - INTERVAL 1 MONTH;
-2.
-    <!-- give me the lowest level of oxygen is noticed for particular id -->
-    -SELECT MIN(BloodOxygenSaturation) AS LowestOxygenLevel FROM biometrics_blood_oxygen_saturation WHERE PatientUserId = 'patient_uuid_here';
-3.
+|12.|give me the last month history of oxygen level in blood for particular id |-SELECT * FROM biometrics_blood_oxygen_saturation WHERE PatientUserId = 'patient_uuid_here' AND RecordDate >= CURDATE() - INTERVAL 1 MONTH;|
+|13.| give me the lowest level of oxygen is noticed for particular id |-SELECT MIN(BloodOxygenSaturation) AS LowestOxygenLevel FROM biometrics_blood_oxygen_saturation WHERE PatientUserId = 'patient_uuid_here';|
+14.
     <!-- give me the highest oxygen level is noticed for particular id -->
     - SELECT MAX(BloodOxygenSaturation) AS HighestOxygenLevel FROM biometrics_blood_oxygen_saturation WHERE PatientUserId = 'patient_uuid_here';
-4.
+15.
     <!-- total who check the oxygen level in blood -->
     - SELECT COUNT(DISTINCT PatientUserId) AS TotalPatients FROM biometrics_blood_oxygen_saturation;
 
