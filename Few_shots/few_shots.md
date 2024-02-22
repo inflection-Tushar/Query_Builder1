@@ -6,9 +6,8 @@
 |3.| give me my highest body temperature in this weak|- SELECT MAX(BodyTemperature) AS HighestBodyTemperature FROM biometrics_body_temperature WHERE PatientUserId = 'patient_uuid_here' AND YEARWEEK(RecordDate, 1) = YEARWEEK(CURDATE(), 1);|
 |4.|give the total records from this table|- SELECT COUNT(*) AS TotalRecords FROM biometrics_body_temperature;|
 
-<!-- few shots or queries related to biometrics_body_height table -->
 
-|:-|:---|:---|
+
 |5.|give me the total records of height for the particular id |- SELECT COUNT(*) AS TotalHeightRecords FROM biometrics_body_height WHERE PersonId = 'person_uuid_here';|
 
 |6.|what is the highest body temperature in last week for particular id|- SELECT MAX(BodyTemperature) AS HighestBodyTemperature FROM biometrics_body_temperature WHERE PatientUserId = 'patient_uuid_here' AND RecordDate >= CURDATE() - INTERVAL 1 WEEK;|
