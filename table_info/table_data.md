@@ -13,9 +13,9 @@ CREATE TABLE `biometrics_body_temperature` (
   `Unit` varchar(8) NOT NULL DEFAULT '°F', ---unit of temperature
   `RecordDate` datetime DEFAULT NULL, ---body temperature record date
   `RecordedByUserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL, ---id of user who recorded the temperature
-  `CreatedAt` datetime DEFAULT NULL,
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL, --- created at timestamp
+  `UpdatedAt` datetime NOT NULL,  --- updated at timestamp
+  `DeletedAt` datetime DEFAULT NULL,    -- deleted if set to not null
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -35,9 +35,9 @@ CREATE TABLE `biometrics_body_height` (
   `Unit` varchar(8) NOT NULL DEFAULT 'cm', ---measured unit of height 
   `RecordDate` datetime DEFAULT NULL, ---recorded date of patient height
   `RecordedByUserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL, ---id of user who recorded the height
-  `CreatedAt` datetime DEFAULT NULL,
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL, ---created time stamp
+  `UpdatedAt` datetime NOT NULL,    ---updated time stamp
+  `DeletedAt` datetime DEFAULT NULL,    --set to not null when data is deleted
   PRIMARY KEY (`id`),
   KEY `PersonId` (`PersonId`),
   KEY `PatientUserId` (`PatientUserId`),
@@ -63,9 +63,9 @@ CREATE TABLE `biometrics_blood_pressure` (
   `Unit` varchar(8) NOT NULL DEFAULT 'mm-Hg',     --unit of measurement
   `RecordDate` datetime DEFAULT NULL,              --date when the reading was taken
   `RecordedByUserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,    --user who took the record
-  `CreatedAt` datetime DEFAULT NULL, 
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,                -- created timestamp
+  `UpdatedAt` datetime NOT NULL,                    -- updated timestamp
+  `DeletedAt` datetime DEFAULT NULL,                 -- deleted timestamp
   PRIMARY KEY (`id`),
   KEY `PersonId` (`PersonId`),
   CONSTRAINT `biometrics_blood_pressure_ibfk_1` FOREIGN KEY (`PersonId`) REFERENCES `persons` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
@@ -85,9 +85,9 @@ CREATE TABLE `biometrics_blood_pressure` (
   `Unit` varchar(8) NOT NULL DEFAULT '%',     ---unit of oxygen saturation
   `RecordDate` datetime DEFAULT NULL,         ---date when the measurement was taken
   `RecordedByUserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL, ---user who took the measurement
-  `CreatedAt` datetime DEFAULT NULL,
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,            ---created time stamp
+  `UpdatedAt` datetime NOT NULL,                 ---updated time stamp
+  `DeletedAt` datetime DEFAULT NULL, -- deleted timestamp
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
@@ -108,9 +108,9 @@ CREATE TABLE `biometrics_blood_pressure` (
   `Unit` varchar(8) NOT NULL DEFAULT 'mg/dL', ---unit of  measurement
   `RecordDate` datetime DEFAULT NULL,     ---date when the glucose was taken
   `RecordedByUserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL, ---user who recorded it
-  `CreatedAt` datetime DEFAULT NULL,
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,        ---creation time stamp
+  `UpdatedAt` datetime NOT NULL,             ---update time stamp
+  `DeletedAt` datetime DEFAULT NULL,            ---deletion timestamp
   PRIMARY KEY (`id`),
   KEY `PersonId` (`PersonId`),
   CONSTRAINT `biometrics_blood_glucose_ibfk_1` FOREIGN KEY (`PersonId`) REFERENCES `persons` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
@@ -135,9 +135,9 @@ CREATE TABLE `biometrics_blood_cholesterol` (
   `Unit` varchar(8) DEFAULT 'mg/dl',        ---unit for all values
   `RecordDate` datetime DEFAULT NULL,        ---date when test was done
   `RecordedByUserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,    --user who took the test
-  `CreatedAt` datetime DEFAULT NULL,
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,          --created timestamp
+  `UpdatedAt` datetime NOT NULL,                 --updated timestamp
+  `DeletedAt` datetime DEFAULT NULL,             --deleted timestamp
   PRIMARY KEY (`id`),
   KEY `PersonId` (`PersonId`),
   CONSTRAINT `biometrics_blood_cholesterol_ibfk_1` FOREIGN KEY (`PersonId`) REFERENCES `persons` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
@@ -156,9 +156,9 @@ CREATE TABLE `biometrics_body_weight` (
   `Unit` varchar(8) NOT NULL DEFAULT 'Kg', ---unit   of measurement for body weight
   `RecordDate` datetime DEFAULT NULL,  --date when the data was recorded
   `RecordedByUserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,  ---user who recorded this data
-  `CreatedAt` datetime DEFAULT NULL,
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,     --timestamp when created
+  `UpdatedAt` datetime NOT NULL,           --timestamp when updated
+  `DeletedAt` datetime DEFAULT NULL,        --timestamp when deleted
   PRIMARY KEY (`id`),
   KEY `PatientUserId` (`PatientUserId`),
   CONSTRAINT `biometrics_body_weight_ibfk_1` FOREIGN KEY (`PatientUserId`) REFERENCES `users` (`id`) ON UPDATE CASCADE
@@ -183,9 +183,9 @@ CREATE TABLE `biometrics_body_weight` (
   `SelectedBridgeId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,    -- bridge id which will be used if there
   `SelectedPhoneNumber` varchar(16) DEFAULT NULL,     -- phone number of volunteer
   `LastDonationRecordId` varchar(64) DEFAULT NULL,      -- record id of last donation
-  `CreatedAt` datetime DEFAULT NULL,
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,                     -- timestamp when created
+  `UpdatedAt` datetime NOT NULL,                           -- timestamp when updated
+  `DeletedAt` datetime DEFAULT NULL,                         -- timestamp when deleted
   PRIMARY KEY (`id`),
   KEY `UserId` (`UserId`),
   KEY `PersonId` (`PersonId`),
@@ -213,8 +213,8 @@ CREATE TABLE `blood_donors` (
   `IsAvailable` tinyint(1) NOT NULL DEFAULT '0',                           --- Is available to donate now?
   `HasDonatedEarlier` tinyint(1) NOT NULL DEFAULT '0',                      --- Has the user ever donated before
   `CreatedAt` datetime DEFAULT NULL,                                         --- created at timestamp
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `UpdatedAt` datetime NOT NULL,                                                 --- updated at timestamp
+  `DeletedAt` datetime DEFAULT NULL,                                                 --- delete at timestamp
   PRIMARY KEY (`id`),
   KEY `UserId` (`UserId`),
   KEY `PersonId` (`PersonId`),
@@ -245,9 +245,9 @@ CREATE TABLE `custom_tasks` (
   `CancellationReason` varchar(128) DEFAULT NULL,     --reason for cancelling the task
   `IsRecurrent` tinyint(1) NOT NULL DEFAULT '0',         --if it's recurring task
   `RecurrenceScheduleId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,     --recurrence schedule id if any
-  `CreatedAt` datetime DEFAULT NULL,
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,                 --created at timestamp
+  `UpdatedAt` datetime NOT NULL,                           --updated at timestamp
+  `DeletedAt` datetime DEFAULT NULL,                                --delete at timestamp
   PRIMARY KEY (`id`),
   KEY `UserId` (`UserId`),
   CONSTRAINT `custom_tasks_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON UPDATE CASCADE
@@ -272,9 +272,9 @@ CREATE TABLE `doctors` (
   `Specialities` varchar(1024) DEFAULT NULL,--specialities of doctor
   `ProfessionalHighlights` varchar(2048) DEFAULT NULL, --professional highlights/achievements
   `ConsultationFee` float DEFAULT NULL,                --consultation fee per minute or hour
-  `CreatedAt` datetime DEFAULT NULL,  
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,                     --created at timestamp
+  `UpdatedAt` datetime NOT NULL,                             --updated at timestamp
+  `DeletedAt` datetime DEFAULT NULL,                                --delete at timestamp
   PRIMARY KEY (`id`),
   KEY `UserId` (`UserId`),
   KEY `PersonId` (`PersonId`),
@@ -303,9 +303,9 @@ CREATE TABLE `health_priorities` (
   `Status` varchar(128) DEFAULT NULL, ---status of health priority: active,completed
   `ScheduledEndDate` datetime DEFAULT NULL, ---date when treatment should be finished
   `IsPrimary` tinyint(1) DEFAULT NULL, ---is primary health priority or not
-  `CreatedAt` datetime DEFAULT NULL,
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,          ----created at timestamp
+  `UpdatedAt` datetime NOT NULL,                -----updated at timestamp
+  `DeletedAt` datetime DEFAULT NULL,                 -------delete at timestamp
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
@@ -319,9 +319,9 @@ CREATE TABLE `health_priority_types` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each health_priority_types
   `Type` varchar(256) NOT NULL, --- Type of Health Priority Type
   `Tags` varchar(512) DEFAULT NULL,  --- Comma separated list of Tags associated with this
-  `CreatedAt` datetime DEFAULT NULL,
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,      -- Created At Timestamp
+  `UpdatedAt` datetime NOT NULL,              -- Updated At Timestamp
+  `DeletedAt` datetime DEFAULT NULL,             -- Delete At Timestamp
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -340,9 +340,9 @@ CREATE TABLE `otp` (
   `ValidFrom` datetime NOT NULL,                                     -- Valid from and till when it
   `ValidTill` datetime NOT NULL,                                     -- will be valid
   `Utilized` tinyint(1) NOT NULL DEFAULT '0',                         -- Is this Otp has been used
-  `CreatedAt` datetime DEFAULT NULL,
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,                                   -- created at timestamp
+  `UpdatedAt` datetime NOT NULL,                                         -- updated at timestamp
+  `DeletedAt` datetime DEFAULT NULL,                                         -- delete at timestamp
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -373,9 +373,9 @@ CREATE TABLE `patient_documents` (
   `SizeInKBytes` float DEFAULT NULL,                       ---size of the file in KB
   `RecordDate` datetime DEFAULT NULL,                       ---date when the document was added/
   `UploadedDate` datetime DEFAULT NULL,                       ---date when the document was uploaded by
-  `CreatedAt` datetime DEFAULT NULL,
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,                            ---created at timestamp
+  `UpdatedAt` datetime NOT NULL,                                  ---updated at timestamp
+  `DeletedAt` datetime DEFAULT NULL,                                  ---delete at timestamp
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
@@ -396,9 +396,9 @@ CREATE TABLE `patient_emergency_contacts` (
   `TimeOfAvailability` varchar(256) DEFAULT NULL,                                --time available to be called or visited
   `Description` varchar(256) DEFAULT NULL,                                       --description about emergency contact
   `AdditionalPhoneNumbers` varchar(64) DEFAULT NULL, --contact number
-  `CreatedAt` datetime DEFAULT NULL,
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,                  --created at timestamp
+  `UpdatedAt` datetime NOT NULL,                        --updated at timestamp
+  `DeletedAt` datetime DEFAULT NULL,  
   PRIMARY KEY (`id`),
   KEY `PatientUserId` (`PatientUserId`),
   KEY `ContactPersonId` (`ContactPersonId`),
@@ -432,9 +432,9 @@ CREATE TABLE `patient_goals` (
   `StartedAt` datetime DEFAULT NULL,--goal started time
   `CompletedAt` datetime DEFAULT NULL,--goal complete time
   `ScheduledEndDate` datetime DEFAULT NULL,-- goal end date
-  `CreatedAt` datetime DEFAULT NULL,
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,   -- created at timestamp
+  `UpdatedAt` datetime NOT NULL,        -- updated at timestamp
+  `DeletedAt` datetime DEFAULT NULL,       -- deleted at timestamp
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -478,9 +478,9 @@ CREATE TABLE `patient_health_profiles` (
   `HasHighBloodPressure` tinyint(1) DEFAULT NULL, --blood pressure detail
   `HasHighCholesterol` tinyint(1) DEFAULT NULL, --cholesterol detail
   `HasAtrialFibrillation` tinyint(1) DEFAULT NULL,      --atrial fibrillation detail
-  `CreatedAt` datetime DEFAULT NULL,
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL, ---created at timestamp     
+  `UpdatedAt` datetime NOT NULL,     ---updated at timestamp
+  `DeletedAt` datetime DEFAULT NULL,     --deleted at timestamp
   PRIMARY KEY (`id`),
   KEY `PatientUserId` (`PatientUserId`),
   CONSTRAINT `patient_health_profiles_ibfk_1` FOREIGN KEY (`PatientUserId`) REFERENCES `users` (`id`) ON UPDATE CASCADE
@@ -501,9 +501,9 @@ CREATE TABLE `patient_insurances` (
   `InsurancePolicyCode` varchar(64) DEFAULT NULL, ---policy code
   `ValidFrom` datetime DEFAULT NULL,-- insurance valid from
   `ValidTill` datetime DEFAULT NULL,-- insurance valid till
-  `CreatedAt` datetime DEFAULT NULL,
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,  --- created at timestamp
+  `UpdatedAt` datetime NOT NULL,         --- updated at timestamp
+  `DeletedAt` datetime DEFAULT NULL,         --- deleted at timestamp
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -528,9 +528,9 @@ CREATE TABLE `patients` (
   `AssociatedHospital` varchar(256) DEFAULT NULL, --hospital associated
   `DonorAcceptance` enum('Send','NotSend','Accepted') NOT NULL DEFAULT 'NotSend', -- donor acceptance status
   `IsRemindersLoaded` tinyint(1) NOT NULL DEFAULT '0', -- is reminder loaded or not
-  `CreatedAt` datetime DEFAULT NULL, 
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,              --- created at timestamp
+  `UpdatedAt` datetime NOT NULL,                   --- updated at timestamp
+  `DeletedAt` datetime DEFAULT NULL,                 --- deleted at timestamp
   PRIMARY KEY (`id`),
   KEY `UserId` (`UserId`),
   KEY `PersonId` (`PersonId`),
@@ -548,9 +548,9 @@ CREATE TABLE `person_addresses` (
   `PersonId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---id of person
   `AddressId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, --- address id of person
   `AddressType` varchar(32) DEFAULT NULL,-- person address type
-  `CreatedAt` datetime DEFAULT NULL,
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,               --- created at timestamp
+  `UpdatedAt` datetime NOT NULL,                      --- updated at timestamp
+  `DeletedAt` datetime DEFAULT NULL,                  --- deleted at timestamp
   PRIMARY KEY (`id`),
   KEY `PersonId` (`PersonId`),
   KEY `AddressId` (`AddressId`),
@@ -569,9 +569,9 @@ CREATE TABLE `person_roles` (
   `PersonId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---id of person
   `RoleId` int NOT NULL, ---id  of roles
   `RoleName` varchar(32) DEFAULT NULL, --role name
-  `CreatedAt` datetime DEFAULT NULL,
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,              ---created at timestamp
+  `UpdatedAt` datetime NOT NULL,                      ---updated at timestamp
+  `DeletedAt` datetime DEFAULT NULL,                    ---deleted at timestamp
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -596,9 +596,9 @@ CREATE TABLE `persons` (
   `ImageResourceId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   `NationalId` varchar(64) DEFAULT NULL,  ---persons national id
   `NationalIdType` varchar(32) NOT NULL DEFAULT 'Aadhar', ---national id type of person
-  `CreatedAt` datetime DEFAULT NULL,
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,               ---created at timestamp
+  `UpdatedAt` datetime NOT NULL,                  ---updated at timestamp
+  `DeletedAt` datetime DEFAULT NULL,                  ---deleted at timestamp
   PRIMARY KEY (`id`),
   UNIQUE KEY `NationalId` (`NationalId`),
   UNIQUE KEY `NationalId_2` (`NationalId`),
@@ -624,9 +624,9 @@ CREATE TABLE `role_privileges` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each role_privileges
   `Privilege` varchar(256) NOT NULL, ---privilages to particular role
   `RoleId` int NOT NULL, ---id of role
-  `CreatedAt` datetime DEFAULT NULL,
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,                ---timestamp when record was created
+  `UpdatedAt` datetime NOT NULL,                       ---timestamp when record was updated
+  `DeletedAt` datetime DEFAULT NULL,                       ---timestamp when record was deleted
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -639,9 +639,9 @@ CREATE TABLE `roles` (
   `id` int NOT NULL AUTO_INCREMENT,
   `RoleName` varchar(32) NOT NULL,  ---Unique ID for each roles
   `Description` varchar(256) DEFAULT NULL, --description of the role
-  `CreatedAt` datetime DEFAULT NULL,
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,          ---timestamp when record was created
+  `UpdatedAt` datetime NOT NULL,                 ---timestamp when record was updated
+  `DeletedAt` datetime DEFAULT NULL,                 ---timestamp when record was deleted
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
@@ -662,10 +662,10 @@ CREATE TABLE `shared_document_details` (
   `Key` varchar(512) NOT NULL, ---key of document
   `SharedWithUserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL, ---document shared to userid
   `SharedForDurationMin` int NOT NULL DEFAULT '720', ---duration of document shared
-  `SharedDate` datetime DEFAULT NULL,
-  `CreatedAt` datetime DEFAULT NULL,
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `SharedDate` datetime DEFAULT NULL,             ---date and time when document is shared
+  `CreatedAt` datetime DEFAULT NULL,                ---creation timestamp
+  `UpdatedAt` datetime NOT NULL,                       ---update timestamp
+  `DeletedAt` datetime DEFAULT NULL,                         ---delete timestamp if document is removed from
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
@@ -683,10 +683,10 @@ CREATE TABLE `user_device_details` (
   `OSVersion` varchar(64) NOT NULL, --- operating system version
   `AppName` varchar(256) NOT NULL, --- app name
   `AppVersion` varchar(64) NOT NULL, --- app version
-  `ChangeCount` int DEFAULT NULL,
-  `CreatedAt` datetime DEFAULT NULL,
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `ChangeCount` int DEFAULT NULL,      -- number of times the device has been used
+  `CreatedAt` datetime DEFAULT NULL,      -- creation date-time stamp
+  `UpdatedAt` datetime NOT NULL,            -- update date-time stamp
+  `DeletedAt` datetime DEFAULT NULL,            -- delete date-time stamp if record is
   PRIMARY KEY (`id`),
   KEY `UserId` (`UserId`),
   CONSTRAINT `user_device_details_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON UPDATE CASCADE
@@ -704,9 +704,9 @@ CREATE TABLE `user_login_sessions` (
   `IsActive` tinyint(1) NOT NULL DEFAULT '1', --- is user session is active or not
   `StartedAt` datetime DEFAULT NULL, -- session started time
   `ValidTill` datetime DEFAULT NULL, --session end time
-  `CreatedAt` datetime DEFAULT NULL,
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,       --creation date-time stamp
+  `UpdatedAt` datetime NOT NULL,             --update date-time stamp
+  `DeletedAt` datetime DEFAULT NULL,             --delete date-time stamp if record is
   PRIMARY KEY (`id`),
   KEY `UserId` (`UserId`),
   CONSTRAINT `user_login_sessions_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON UPDATE CASCADE
@@ -737,10 +737,10 @@ CREATE TABLE `user_tasks` (
   `CancelledAt` datetime DEFAULT NULL,
   `CancellationReason` varchar(128) DEFAULT NULL, ---cancellation reason
   `IsRecurrent` tinyint(1) NOT NULL DEFAULT '0',
-  `RecurrenceScheduleId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `CreatedAt` datetime DEFAULT NULL,
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `RecurrenceScheduleId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL, --recurring schedule Id
+  `CreatedAt` datetime DEFAULT NULL,          --creation date-time stamp
+  `UpdatedAt` datetime NOT NULL,                --update date-time stamp
+  `DeletedAt` datetime DEFAULT NULL,              --delete date-time stamp if record is deleted
   PRIMARY KEY (`id`),
   KEY `UserId` (`UserId`),
   CONSTRAINT `user_tasks_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON UPDATE CASCADE
@@ -761,10 +761,10 @@ CREATE TABLE `users` (
   `LastLogin` datetime DEFAULT NULL, ---last login date and time
   `DefaultTimeZone` varchar(16) NOT NULL DEFAULT '+05:30', ---default time zone
   `CurrentTimeZone` varchar(16) NOT NULL DEFAULT '+05:30', ---current time zone
-  `IsTestUser` tinyint(1) NOT NULL DEFAULT '0',
-  `CreatedAt` datetime DEFAULT NULL,
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `IsTestUser` tinyint(1) NOT NULL DEFAULT '0', -- flag for test user or not
+  `CreatedAt` datetime DEFAULT NULL,             --creation date-time stamp
+  `UpdatedAt` datetime NOT NULL,                   --update date-time stamp
+  `DeletedAt` datetime DEFAULT NULL,                 --delete date-time stamp if record is
   PRIMARY KEY (`id`),
   UNIQUE KEY `UserName` (`UserName`),
   UNIQUE KEY `UserName_2` (`UserName`),
@@ -798,9 +798,9 @@ CREATE TABLE `addresses` (
   `PostalCode` varchar(16) DEFAULT NULL,--postal code of address
   `Longitude` float DEFAULT NULL, ---longitute of address
   `Lattitude` float DEFAULT NULL, ---lattitude of address
-  `CreatedAt` datetime DEFAULT NULL,  
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,          --creation date-time stamp
+  `UpdatedAt` datetime NOT NULL,                --update date-time stamp
+  `DeletedAt` datetime DEFAULT NULL,                --delete date-time stamp if record is
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
@@ -819,9 +819,9 @@ CREATE TABLE `organizations` (
   `ImageResourceId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   `IsHealthFacility` tinyint(1) NOT NULL DEFAULT '1', 
   `NationalHealthFacilityRegistryId` varchar(64) DEFAULT NULL, ---id of national facility registry
-  `CreatedAt` datetime DEFAULT NULL,
-  `UpdatedAt` datetime NOT NULL,
-  `DeletedAt` datetime DEFAULT NULL,
+  `CreatedAt` datetime DEFAULT NULL,           --creation date-time stamp
+  `UpdatedAt` datetime NOT NULL,                 --update date-time stamp
+  `DeletedAt` datetime DEFAULT NULL,               --delete date-time stamp if record is
   PRIMARY KEY (`id`),
   KEY `organizations__contact_phone` (`ContactPhone`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
