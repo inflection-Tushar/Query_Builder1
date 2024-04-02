@@ -1,6 +1,6 @@
-Few shots for particular table:
 
-1. biometrics_body_temperature
+
+1. biometrics_body_temperature , body_temperature ,  temperature, this table  contains information about the body temperature of a person
 
 ``` sql
 CREATE TABLE `biometrics_body_temperature` (
@@ -20,11 +20,10 @@ CREATE TABLE `biometrics_body_temperature` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 ```
+##
 
 
-
-
-2. biometrics_body_height
+2. biometrics_body_height, body height, height, this  table stores the data about a person's height
 ``` sql
 CREATE TABLE `biometrics_body_height` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each biometrics_body_height
@@ -45,11 +44,11 @@ CREATE TABLE `biometrics_body_height` (
   CONSTRAINT `biometrics_body_height_ibfk_22` FOREIGN KEY (`PatientUserId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
+##
 
 
 
-
-3. biometrics_blood_pressure
+3. biometrics_blood_pressure, blood pressure, low blood pressure, high blood pressure, pulse and respiration are stored in this table, heart rate, systolic blood pressure, diastolic blood pressure 
 ``` sql
 CREATE TABLE `biometrics_blood_pressure` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each biometrics_blood_pressure
@@ -72,8 +71,10 @@ CREATE TABLE `biometrics_blood_pressure` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
 
+##
 
-4. biometrics_blood_oxygen_saturation
+
+4. biometrics_blood_oxygen_saturation, blood_oxygen_saturation, oxygen in blood, oxygen level in blood, it's a measure of how much oxygen, details of oxygen in blood
 ``` sql
   CREATE TABLE `biometrics_blood_oxygen_saturation` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each biometrics_blood_oxygen_saturation
@@ -94,7 +95,11 @@ CREATE TABLE `biometrics_blood_pressure` (
 
 
 
-5. biometrics_blood_glucose
+
+##
+
+
+5. biometrics_blood_glucose, blood glucose, blood sugar, sugar in blood, glucose in blood, diabetes management tool records
 ``` sql
  CREATE TABLE `biometrics_blood_glucose` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each biometrics_blood_glucose
@@ -118,8 +123,9 @@ CREATE TABLE `biometrics_blood_pressure` (
 ```
 
 
+##
 
-6. biometrics_blood_cholesterol
+6. biometrics_blood_cholesterol, blood cholesterol, hdl and ldl levels, cholesterols, LDL, HDL
 ``` sql
 CREATE TABLE `biometrics_blood_cholesterol` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each biometrics_blood_cholesterol
@@ -144,9 +150,9 @@ CREATE TABLE `biometrics_blood_cholesterol` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
 
+##
 
-
-7. biometrics_body_weight
+7. biometrics_body_weight,  body weight measurements, body weight, weight, table contains the body weight related details
 ``` sql
 CREATE TABLE `biometrics_body_weight` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each biometrics_body_weight
@@ -166,8 +172,12 @@ CREATE TABLE `biometrics_body_weight` (
 ```
 
 
+##
 
-8. blood_donation_volunteers
+
+
+
+8. blood_donation_volunteers, volunteer, this table contains  information about people who have donated blood voluntarily
 ``` sql
   CREATE TABLE `blood_donation_volunteers` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each blood_donation_volunteers
@@ -194,10 +204,9 @@ CREATE TABLE `biometrics_body_weight` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
 
+##
 
-
-
-9. blood_donors
+9. blood_donors, donor, blood donor, potential donor, eligible donor, registered donor, plasma donor, universal donor
 ``` sql
 CREATE TABLE `blood_donors` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each blood_donors
@@ -223,8 +232,9 @@ CREATE TABLE `blood_donors` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
 
+##
 
-10. custom_tasks
+10. custom_tasks, custom activities, defined tasks, this table contains custom tasks
 ``` sql
 CREATE TABLE `custom_tasks` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each custom_tasks
@@ -254,9 +264,9 @@ CREATE TABLE `custom_tasks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
 
+##
 
-
-11. doctors
+11. doctors, physician, surgeon, specialist, cardiologist, radiologist, neurologist, gynecologist
 ``` sql
 CREATE TABLE `doctors` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each doctors
@@ -284,10 +294,10 @@ CREATE TABLE `doctors` (
 ```
 
 
+##
 
 
-
-12. health_priorities
+12. health_priorities, condition, symptom, disease, problem, Health Goals
 ``` sql
 CREATE TABLE `health_priorities` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each health_priorities
@@ -310,10 +320,12 @@ CREATE TABLE `health_priorities` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
 
+##
+
 
 
  
-13. health_priority_types
+13. health_priority_types, Health category, health concern category, this table contains the health priority types
 ``` sql
 CREATE TABLE `health_priority_types` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each health_priority_types
@@ -329,8 +341,10 @@ CREATE TABLE `health_priority_types` (
 
 
 
+##
 
-14. otp
+
+14. otp, one time password, verification code, auth code, token, temp password, this table contains the one time password
 ``` sql
 CREATE TABLE `otp` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each otp
@@ -350,8 +364,10 @@ CREATE TABLE `otp` (
 ```
 
 
+##
+
     
-15. patient_documents
+15. patient_documents,medical records, patient files, health records, clinical documents, medical history, documents submitted by patient, this tabel contains details related to patient documentation
 ``` sql
 CREATE TABLE `patient_documents` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each patient_documents
@@ -381,9 +397,10 @@ CREATE TABLE `patient_documents` (
 ```
 
 
+##
 
 
-16. patient_emergency_contacts
+16. patient_emergency_contacts, Emergency contacts, Primary contact, contact details in case of emergency, details of patient relatives contacts
 ``` sql
 CREATE TABLE `patient_emergency_contacts` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each patient_emergency_contacts
@@ -412,9 +429,10 @@ CREATE TABLE `patient_emergency_contacts` (
 ```
 
 
+##
 
 
-17. patient_goals
+17. patient_goals, Health targets, Desired health outcomes, details of patient goals
 ``` sql
 CREATE TABLE `patient_goals` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each patient_goals
@@ -440,8 +458,11 @@ CREATE TABLE `patient_goals` (
 
 ```
 
+##
 
-18. patient_health_profiles
+
+
+18. patient_health_profiles, profile of patient health, Medical history, Patient records, Individual health data
 ``` sql
 CREATE TABLE `patient_health_profiles` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each patient_health_profiles
@@ -487,12 +508,13 @@ CREATE TABLE `patient_health_profiles` (
 )
 
 ```
-
- 
-
+##
 
 
-19. patient_insurances
+
+
+
+19. patient_insurances, patient insurance details, health_insurance, insurance_coverage, insurance_plan
 ``` sql
 CREATE TABLE `patient_insurances` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each patient_insurances
@@ -511,7 +533,13 @@ CREATE TABLE `patient_insurances` (
 
 
 
-20. patients
+
+##
+
+
+
+
+20. patients, details of patient
 ``` sql
 CREATE TABLE `patients` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each patients
@@ -539,9 +567,11 @@ CREATE TABLE `patients` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
 
+##
 
 
-21. person_addresses 
+
+21. person_addresses, details of person's addresses, 
 ``` sql
 CREATE TABLE `person_addresses` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each person_addresses
@@ -560,9 +590,9 @@ CREATE TABLE `person_addresses` (
 ```
 
 
+##
 
-
-22. person_roles
+22. person_roles, roles of person, details related to person roles
 ``` sql
 CREATE TABLE `person_roles` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each person_roles
@@ -578,7 +608,10 @@ CREATE TABLE `person_roles` (
 ```
 
 
-23. persons
+##
+
+
+23. Persons_details, This is persons sql table. This table represents personal details such as firstname, lastname, email, phone, gender and birthdate. 
 ``` sql
 CREATE TABLE `persons` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each persons
@@ -600,25 +633,17 @@ CREATE TABLE `persons` (
   `UpdatedAt` datetime NOT NULL,                  ---updated at timestamp
   `DeletedAt` datetime DEFAULT NULL,                  ---deleted at timestamp
   PRIMARY KEY (`id`),
-  UNIQUE KEY `NationalId` (`NationalId`),
-  UNIQUE KEY `NationalId_2` (`NationalId`),
-  UNIQUE KEY `NationalId_3` (`NationalId`),
-  UNIQUE KEY `NationalId_4` (`NationalId`),
-  UNIQUE KEY `NationalId_5` (`NationalId`),
-  UNIQUE KEY `NationalId_6` (`NationalId`),
-  UNIQUE KEY `NationalId_7` (`NationalId`),
-  UNIQUE KEY `NationalId_8` (`NationalId`),
-  UNIQUE KEY `NationalId_9` (`NationalId`),
-  UNIQUE KEY `NationalId_10` (`NationalId`),
-  UNIQUE KEY `NationalId_11` (`NationalId`),
+
   KEY `persons__phone` (`Phone`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
 
 
+##
 
 
-24. role_privileges
+
+24. role_privileges, role_permissions ,user_privileges , permission details for particular roles
 ``` sql
 CREATE TABLE `role_privileges` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each role_privileges
@@ -633,7 +658,10 @@ CREATE TABLE `role_privileges` (
 ```
 
 
-25. roles
+##
+
+
+25. roles, roles details 
 ``` sql
 CREATE TABLE `roles` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -647,9 +675,11 @@ CREATE TABLE `roles` (
 ```
 
 
+##
 
 
-26. shared_document_details
+
+26. shared_document_details, shared  document details, documents which are shared by patient  
 ``` sql
 CREATE TABLE `shared_document_details` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each shared_document_details
@@ -671,8 +701,10 @@ CREATE TABLE `shared_document_details` (
 ```
 
 
+##
 
-27. user_device_details
+
+27. user_device_details, details of user device or mobile phone
 ``` sql
 CREATE TABLE `user_device_details` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each user_device_details
@@ -695,8 +727,10 @@ CREATE TABLE `user_device_details` (
 ```
 
 
+##
 
-28. user_login_sessions
+
+28. user_login_sessions,  records login sessions of users, login session details of user
 ``` sql
 CREATE TABLE `user_login_sessions` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each user_login_sessions
@@ -715,8 +749,10 @@ CREATE TABLE `user_login_sessions` (
 ```
 
 
+##
 
-29. user_tasks
+
+29. user_tasks, records tasks assigned to a user, task related to user
 ``` sql
 CREATE TABLE `user_tasks` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, --- Unique ID for each user_tasks
@@ -748,9 +784,11 @@ CREATE TABLE `user_tasks` (
 
 ```
 
+##
 
 
-30. users
+
+30. users, user details, registeration details of user, user credential, user profile information
 ``` sql
 CREATE TABLE `users` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each users
@@ -783,8 +821,10 @@ CREATE TABLE `users` (
 ```
 
 
+##
 
-31. addresses
+
+31. addresses, this tabel contain the  address detail of a user, address table
 ``` sql
 CREATE TABLE `addresses` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each addresses
@@ -804,7 +844,12 @@ CREATE TABLE `addresses` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
-32. organizations
+
+##
+
+
+
+32. organizations, details related to organizations, organization table, organization profile
 ``` sql
 CREATE TABLE `organizations` (
   `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL, ---Unique ID for each organizations
